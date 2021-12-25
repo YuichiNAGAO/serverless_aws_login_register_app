@@ -48,5 +48,6 @@ jobs:
     #   run: terraform apply -auto-approve
 
     - name: Lambda Deploy
+      working-directory: "backend"
       run: ls
 
