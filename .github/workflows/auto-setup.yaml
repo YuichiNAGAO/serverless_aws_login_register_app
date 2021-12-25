@@ -38,26 +38,26 @@ jobs:
         zip -rq archive.zip features/ utils/ node_modules/ index.js package.json
         ls
 
-    # - name: Get terraform version
-    #   id: tfver
-    #   run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
+    - name: Get terraform version
+      id: tfver
+      run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
 
-    # - name: Setup Terraform
-    #   uses: hashicorp/setup-terraform@v1
-    #   with:
-    #     terraform_version: ${{ steps.tfver.outputs.tfver }}
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ steps.tfver.outputs.tfver }}
 
-    # - name: Terraform Init
-    #   id: init
-    #   run: terraform init
+    - name: Terraform Init
+      id: init
+      run: terraform init
 
-    # - name: Terraform Validate
-    #   id: validate
-    #   run: terraform validate
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate
 
-    # - name: Terraform Plan
-    #   id: plan
-    #   run: terraform plan -no-color
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color
 
     # - name: Terraform Apply
     #   run: terraform apply -auto-approve
