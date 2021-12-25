@@ -1,5 +1,5 @@
 provider "aws" {
-  region     = "ap-northeast-1"
+  region = "ap-northeast-1"
 }
 
 terraform {
@@ -11,9 +11,9 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "tf-backend-yuichi"
-    region         = "ap-northeast-1"
-    key            = "serverless_aws_login_register_app.tfstate"
-    encrypt        = true
+    bucket  = "tf-backend-yuichi"
+    region  = "ap-northeast-1"
+    key     = "serverless_aws_login_register_app.tfstate"
+    encrypt = true
   }
 }

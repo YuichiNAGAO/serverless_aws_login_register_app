@@ -1,8 +1,8 @@
 resource "aws_iam_role" "lambda_iam_role" {
-    name = "sample-app-lambda-role"
+  name = "sample-app-lambda-role"
 
-    description = "Allows Lambda functions to call AWS services on your behalf."
-    assume_role_policy = jsonencode({
+  description = "Allows Lambda functions to call AWS services on your behalf."
+  assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
