@@ -1,2 +1,11 @@
 terraform/.terraform*
 terraform/.terraform/*
+
+.DS_Store
+backend/.DS_Store
+
+backend/archive.zip
+backend/node_modules/
+backend/package-lock.json
+
+command

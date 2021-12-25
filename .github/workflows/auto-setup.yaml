@@ -23,6 +23,21 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ap-northeast-1
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+
+    - name: Install Dependencies
+      working-directory: "backend"
+      run: npm install
+
+    - name: Zip backend files
+      working-directory: "backend"
+      run: |
+        zip -rq archive.zip features/ utils/ node_modules/ index.js package.json
+        ls
+
     # - name: Get terraform version
     #   id: tfver
     #   run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
@@ -46,19 +61,3 @@ jobs:
 
     # - name: Terraform Apply
     #   run: terraform apply -auto-approve
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-
-    - name: Install Dependencies
-      working-directory: "backend"
-      run: |
-        npm install serverless -g
-        npm install
-
-    - name: Lambda Deployment
-      working-directory: "backend"
-      run: bash upload.sh
-
