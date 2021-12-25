@@ -120,6 +120,13 @@ resource "aws_api_gateway_deployment" "mydeployment" {
   rest_api_id       = aws_api_gateway_rest_api.api_gateway_rest_api.id
   stage_name        = "prod"
 
+  depends_on = [
+    aws_api_gateway_integration.integration_health,
+    aws_api_gateway_integration.integration_login,
+    aws_api_gateway_integration.integration_register,
+    aws_api_gateway_integration.integration_verify
+  ]
+
   lifecycle {
     create_before_destroy = true
   }
@@ -157,4 +164,24 @@ resource "aws_api_gateway_usage_plan_key" "myplan_key" {
   key_id        = aws_api_gateway_api_key.backend_apikey.id
   key_type      = "API_KEY"
   usage_plan_id = aws_api_gateway_usage_plan.myplan.id
+}
+
+
+
+
+resource "aws_api_gateway_account" "demo" {
+  cloudwatch_role_arn = aws_iam_role.cloudwatch.arn
+}
+
+resource "aws_api_gateway_method_settings" "api_gateway_method_settings" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  stage_name  = aws_api_gateway_deployment.mydeployment.stage_name
+  method_path = "*/*"
+
+  settings {
+    data_trace_enabled = true
+    logging_level      = "INFO"
+  }
+
+  depends_on= [aws_api_gateway_account.demo]
 }
