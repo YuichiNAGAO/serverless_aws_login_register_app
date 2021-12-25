@@ -1,49 +1,50 @@
-# name: "Serverless app deployment by Terraform"
+name: "Serverless app deployment by Terraform"
 
-# on: [ workflow_dispatch ]
+on: workflow_dispatch
 
-# defaults:
-#   run:
-#       working-directory: "terraform"
 
-# jobs:
-#   terraform:
-#     name: Terraform
-#     runs-on: ubuntu-latest
+defaults:
+  run:
+      working-directory: "terraform"
 
-#     steps:
-#     - name: Checkout
-#       uses: actions/checkout@v2
+jobs:
+  terraform:
+    name: Terraform
+    runs-on: ubuntu-latest
 
-#     - name: configure AWS credentials
-#       uses: aws-actions/configure-aws-credentials@v1
-#       with:
-#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#         aws-region: ap-northeast-1
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
 
-#     - name: Get terraform version
-#         id: tfver
-#         run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
+    - name: configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-northeast-1
 
-#     - name: Setup Terraform
-#         uses: hashicorp/setup-terraform@v1
-#         with:
-#           terraform_version: ${{ steps.tfver.outputs.tfver }}
+    - name: Get terraform version
+        id: tfver
+        run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
 
-#     - name: Terraform Init
-#         id: init
-#         run: terraform init
+    - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: ${{ steps.tfver.outputs.tfver }}
 
-#     - name: Terraform Validate
-#       id: validate
-#       run: terraform validate
+    - name: Terraform Init
+        id: init
+        run: terraform init
 
-#     - name: Terraform Plan
-#       id: plan
-#       run: terraform plan -no-color
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate
 
-#     - name: Terraform Apply
-#         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-#         run: |
-#           terraform apply -auto-approve
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color
+
+    - name: Terraform Apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          terraform apply -auto-approve
