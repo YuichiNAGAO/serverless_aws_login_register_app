@@ -2,10 +2,6 @@ name: "Serverless app deployment by Terraform"
 
 on:
   workflow_dispatch:
-  # push:
-  #   branches: [ main ]
-  # pull_request:
-  #   branches: [ main ]
 
 defaults:
   run:
