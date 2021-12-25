@@ -24,17 +24,17 @@ jobs:
         aws-region: ap-northeast-1
 
     - name: Get terraform version
-        id: tfver
-        run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
+      id: tfver
+      run: echo "::set-output name=tfver::`cat $GITHUB_WORKSPACE/.terraform-version`"
 
     - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: ${{ steps.tfver.outputs.tfver }}
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ steps.tfver.outputs.tfver }}
 
     - name: Terraform Init
-        id: init
-        run: terraform init
+      id: init
+      run: terraform init
 
     - name: Terraform Validate
       id: validate
