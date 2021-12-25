@@ -1,7 +1,6 @@
 name: "Serverless app deployment by Terraform"
 
-on:
-  workflow_dispatch:
+on: [ workflow_dispatch ]
 
 defaults:
   run:
