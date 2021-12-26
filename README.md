@@ -1,6 +1,6 @@
 # Sample Severless App with Login/Resister feature 
 
-AWS Lambda+API Gateway+DynamoDBでReact+Node+Terraformでデプロイするログイン/登録機能を持ったサンプルプリケーション
+AWS上にReact+Node+Terraformでデプロイするログイン/登録機能を持ったサンプルプリケーション
 
 ### アーキテクチャ
 
