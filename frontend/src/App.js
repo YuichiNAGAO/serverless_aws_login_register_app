@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
       <Header />
-      <div>
+      <div style={{ padding: 30 }}>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/resgister" element={<Register />} />

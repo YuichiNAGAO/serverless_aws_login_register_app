@@ -1,12 +1,14 @@
 import React from "react";
+import { Grid } from '@material-ui/core'
 
-
-const Home = ()=> {
+function Home() {
     return (
-        <div>
+        <Grid container>
+            <Grid sm={2}/>
+            <Grid lg={8} sm={8} spacing={10}>
             This is Home page!
-        </div>
+            </Grid>
+        </Grid>
     )
 }
-
 export default Home;
