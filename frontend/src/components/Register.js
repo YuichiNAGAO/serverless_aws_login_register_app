@@ -6,8 +6,7 @@ import Container from "@material-ui/core/Container";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import axios from 'axios';
 
-const registerUrl= 'https://0l5fd3qof9.execute-api.ap-northeast-1.amazonaws.com/prod/register';
-// const registerUrl= 'https://m9rry4nzwf.execute-api.ap-northeast-1.amazonaws.com/prod/health';
+const registerUrl= process.env.REGISTERURL;
 
 const Register = ()=> {
     const [name, setName]= useState('')
@@ -26,7 +25,7 @@ const Register = ()=> {
 
         const requestConfig ={
             header: {
-                'x-api-key': 'n3tmmBFIYf25i9ao20ipR9L4mVhrlHvd8sJQDbIi'
+                'x-api-key': process.env.APIKEY
             }
         }
 

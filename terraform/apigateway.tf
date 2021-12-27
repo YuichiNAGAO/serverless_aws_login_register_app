@@ -20,6 +20,13 @@ resource "aws_api_gateway_method" "health_method" {
   api_key_required = true
 }
 
+resource "aws_api_gateway_method" "health_method_option" {
+  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id      = aws_api_gateway_resource.health_resource.id
+  http_method      = "OPTIONS"
+  authorization    = "NONE"
+}
+
 resource "aws_api_gateway_integration" "integration_health" {
   rest_api_id             = aws_api_gateway_rest_api.api_gateway_rest_api.id
   resource_id             = aws_api_gateway_resource.health_resource.id
@@ -45,6 +52,13 @@ resource "aws_api_gateway_method" "login_method" {
   http_method      = "POST"
   authorization    = "NONE"
   api_key_required = true
+}
+
+resource "aws_api_gateway_method" "login_method_option" {
+  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id      = aws_api_gateway_resource.login_resource.id
+  http_method      = "OPTIONS"
+  authorization    = "NONE"
 }
 
 resource "aws_api_gateway_integration" "integration_login" {
@@ -75,6 +89,13 @@ resource "aws_api_gateway_method" "register_method" {
   api_key_required = true
 }
 
+resource "aws_api_gateway_method" "register_method_option" {
+  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id      = aws_api_gateway_resource.register_resource.id
+  http_method      = "OPTIONS"
+  authorization    = "NONE"
+}
+
 resource "aws_api_gateway_integration" "integration_register" {
   rest_api_id             = aws_api_gateway_rest_api.api_gateway_rest_api.id
   resource_id             = aws_api_gateway_resource.register_resource.id
@@ -101,6 +122,13 @@ resource "aws_api_gateway_method" "verify_method" {
   http_method      = "POST"
   authorization    = "NONE"
   api_key_required = true
+}
+
+resource "aws_api_gateway_method" "verify_method_option" {
+  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id      = aws_api_gateway_resource.verify_resource.id
+  http_method      = "OPTIONS"
+  authorization    = "NONE"
 }
 
 resource "aws_api_gateway_integration" "integration_verify" {
