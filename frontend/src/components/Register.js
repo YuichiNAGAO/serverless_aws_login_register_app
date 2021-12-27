@@ -6,7 +6,8 @@ import Container from "@material-ui/core/Container";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import axios from 'axios';
 
-const registerURL= ''
+const registerUrl= 'https://0l5fd3qof9.execute-api.ap-northeast-1.amazonaws.com/prod/register';
+// const registerUrl= 'https://m9rry4nzwf.execute-api.ap-northeast-1.amazonaws.com/prod/health';
 
 const Register = ()=> {
     const [name, setName]= useState('')
@@ -25,26 +26,35 @@ const Register = ()=> {
 
         const requestConfig ={
             header: {
-                'x-api-key': ''
+                'x-api-key': 'n3tmmBFIYf25i9ao20ipR9L4mVhrlHvd8sJQDbIi'
             }
         }
+
+        // axios.get(registerUrl, requestConfig).then(response => {
+        //     setMessage('Registation Succcessful');
+        // }).catch(error => {
+        //     if (error.response.status==401 || error.response.status==403){
+        //         setMessage(error.response.data.message);
+        //     } else {
+        //         setMessage('sorry... backend server is down');
+        //     }
+        // })
     
-        const requestBody ={
+        const requestBody = {
             username: username,
             email: email,
             name: name,
             password: password
-        }
-    
-        axios.post(registerURL, requestBody, requestConfig).then(response => {
-            setMessage('Registation Succcessful');
-        }).catch(error => {
-            if (error.response.status==401 || error.response.status==403){
-                setMessage(error.response.data.message);
+          }
+          axios.post(registerUrl, requestBody, requestConfig).then(response => {
+            setMessage('Registeration Successful');
+          }).catch(error => {
+            if (error.response.status === 401) {
+              setMessage(error.response.data.message);
             } else {
-                setMessage('sorry... backend server is down');
+              setMessage('sorry....the backend server is down!! please try again later');
             }
-        })
+          })
     
     }
 

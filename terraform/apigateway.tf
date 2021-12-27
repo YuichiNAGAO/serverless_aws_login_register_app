@@ -185,3 +185,36 @@ resource "aws_api_gateway_method_settings" "api_gateway_method_settings" {
 
   depends_on= [aws_api_gateway_account.demo]
 }
+
+resource "aws_api_gateway_gateway_response" "gateway_response_4XX" {
+  rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  response_type="DEFAULT_4XX"
+
+  response_templates = {
+    "application/json" = "{\"message\":$context.error.messageString}"
+  }
+
+  response_parameters = {
+    "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type'"
+    "gatewayresponse.header.Access-Control-Allow-Methods" = "'OPTIONS,POST,GET'"
+    "gatewayresponse.header.Access-Control-Allow-Origin" = "'*'"
+  }
+  
+}
+
+
+resource "aws_api_gateway_gateway_response" "gateway_response_5XX" {
+  rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  response_type="DEFAULT_5XX"
+
+  response_templates = {
+    "application/json" = "{\"message\":$context.error.messageString}"
+  }
+
+  response_parameters = {
+    "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type'"
+    "gatewayresponse.header.Access-Control-Allow-Methods" = "'OPTIONS,POST,GET'"
+    "gatewayresponse.header.Access-Control-Allow-Origin" = "'*'"
+  }
+  
+}
