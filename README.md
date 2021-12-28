@@ -1,6 +1,6 @@
 # Sample Severless App with Login/Register feature 
 
-AWS上にReact+Node+Terraformでデプロイするログイン/登録機能を持ったサンプルアプリケーション
+AWS上にReact+Node.js+Terraformでデプロイするログイン/登録機能を持ったサンプルアプリケーション
 
 ### アーキテクチャ
 
