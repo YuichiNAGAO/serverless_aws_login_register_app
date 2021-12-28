@@ -37,6 +37,16 @@ resource "aws_api_gateway_integration" "integration_health" {
   content_handling        = "CONVERT_TO_TEXT"
 }
 
+resource "aws_api_gateway_integration" "integration_health_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.health_resource.id
+  http_method = aws_api_gateway_method.health_method_option.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
 
 
 
@@ -71,6 +81,17 @@ resource "aws_api_gateway_integration" "integration_login" {
   content_handling        = "CONVERT_TO_TEXT"
 }
 
+resource "aws_api_gateway_integration" "integration_login_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.login_resource.id
+  http_method = aws_api_gateway_method.login_method_option.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
+
 
 
 
@@ -104,6 +125,16 @@ resource "aws_api_gateway_integration" "integration_register" {
   type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.lambda_function.invoke_arn
   content_handling        = "CONVERT_TO_TEXT"
+}
+
+resource "aws_api_gateway_integration" "integration_register_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.register_resource.id
+  http_method = aws_api_gateway_method.register_method_option.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
 }
 
 
@@ -141,6 +172,16 @@ resource "aws_api_gateway_integration" "integration_verify" {
   content_handling        = "CONVERT_TO_TEXT"
 }
 
+resource "aws_api_gateway_integration" "integration_verify_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.verify_resource.id
+  http_method = aws_api_gateway_method.verify_method_option.http_method
+  type        = "MOCK"
+  request_templates = {
+    "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
 
 
 
@@ -152,7 +193,11 @@ resource "aws_api_gateway_deployment" "mydeployment" {
     aws_api_gateway_integration.integration_health,
     aws_api_gateway_integration.integration_login,
     aws_api_gateway_integration.integration_register,
-    aws_api_gateway_integration.integration_verify
+    aws_api_gateway_integration.integration_verify,
+    aws_api_gateway_integration.integration_health_option,
+    aws_api_gateway_integration.integration_login_option,
+    aws_api_gateway_integration.integration_register_option,
+    aws_api_gateway_integration.integration_verify_option
   ]
 
   lifecycle {
