@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import axios from 'axios';
 
-const registerUrl= process.env.REGISTERURL;
+const registerUrl= process.env.REACT_APP_REGISTERURL;
 
 const Register = ()=> {
     const [name, setName]= useState('')
@@ -25,7 +25,7 @@ const Register = ()=> {
 
         const requestConfig ={
             header: {
-                'x-api-key': process.env.APIKEY
+                'x-api-key': process.env.REACT_APP_APIKEY
             }
         }
 

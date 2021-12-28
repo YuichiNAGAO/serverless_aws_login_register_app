@@ -27,6 +27,34 @@ resource "aws_api_gateway_method" "health_method_option" {
   authorization    = "NONE"
 }
 
+resource "aws_api_gateway_method_response" "health_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.health_resource.id
+  http_method = aws_api_gateway_method.health_method.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "health_method_response_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.health_resource.id
+  http_method = aws_api_gateway_method.health_method_option.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
 resource "aws_api_gateway_integration" "integration_health" {
   rest_api_id             = aws_api_gateway_rest_api.api_gateway_rest_api.id
   resource_id             = aws_api_gateway_resource.health_resource.id
@@ -46,6 +74,20 @@ resource "aws_api_gateway_integration" "integration_health_option" {
     "application/json" = "{\"statusCode\": 200}"
   }
 }
+
+resource "aws_api_gateway_integration_response" "integration_health_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.health_resource.id
+  http_method = aws_api_gateway_method.health_method_option.http_method
+  status_code = aws_api_gateway_method_response.health_method_response_option.status_code
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST'",
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+}
+
+
 
 
 
@@ -71,6 +113,36 @@ resource "aws_api_gateway_method" "login_method_option" {
   authorization    = "NONE"
 }
 
+
+resource "aws_api_gateway_method_response" "login_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.login_resource.id
+  http_method = aws_api_gateway_method.login_method.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "login_method_response_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.login_resource.id
+  http_method = aws_api_gateway_method.login_method_option.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
+
 resource "aws_api_gateway_integration" "integration_login" {
   rest_api_id             = aws_api_gateway_rest_api.api_gateway_rest_api.id
   resource_id             = aws_api_gateway_resource.login_resource.id
@@ -90,6 +162,20 @@ resource "aws_api_gateway_integration" "integration_login_option" {
     "application/json" = "{\"statusCode\": 200}"
   }
 }
+
+resource "aws_api_gateway_integration_response" "integration_login_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.login_resource.id
+  http_method = aws_api_gateway_method.login_method_option.http_method
+  status_code = aws_api_gateway_method_response.login_method_response_option.status_code
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST'",
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+}
+
+
 
 
 
@@ -117,6 +203,34 @@ resource "aws_api_gateway_method" "register_method_option" {
   authorization    = "NONE"
 }
 
+resource "aws_api_gateway_method_response" "register_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.register_resource.id
+  http_method = aws_api_gateway_method.register_method.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "register_method_response_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.register_resource.id
+  http_method = aws_api_gateway_method.register_method_option.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
 resource "aws_api_gateway_integration" "integration_register" {
   rest_api_id             = aws_api_gateway_rest_api.api_gateway_rest_api.id
   resource_id             = aws_api_gateway_resource.register_resource.id
@@ -136,6 +250,20 @@ resource "aws_api_gateway_integration" "integration_register_option" {
     "application/json" = "{\"statusCode\": 200}"
   }
 }
+
+resource "aws_api_gateway_integration_response" "integration_register_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.register_resource.id
+  http_method = aws_api_gateway_method.register_method_option.http_method
+  status_code = aws_api_gateway_method_response.register_method_response_option.status_code
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST'",
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
+  }
+}
+
+
 
 
 
@@ -162,6 +290,35 @@ resource "aws_api_gateway_method" "verify_method_option" {
   authorization    = "NONE"
 }
 
+
+resource "aws_api_gateway_method_response" "verify_method_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.verify_resource.id
+  http_method = aws_api_gateway_method.verify_method.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Origin" = true
+  }
+}
+
+resource "aws_api_gateway_method_response" "verify_method_response_option" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.verify_resource.id
+  http_method = aws_api_gateway_method.verify_method_option.http_method
+  status_code = "200"
+  response_models = {
+    "application/json" = "Empty"
+  }
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = true
+    "method.response.header.Access-Control-Allow-Methods" = true
+    "method.response.header.Access-Control-Allow-Origin"  = true
+  }
+}
+
 resource "aws_api_gateway_integration" "integration_verify" {
   rest_api_id             = aws_api_gateway_rest_api.api_gateway_rest_api.id
   resource_id             = aws_api_gateway_resource.verify_resource.id
@@ -179,6 +336,18 @@ resource "aws_api_gateway_integration" "integration_verify_option" {
   type        = "MOCK"
   request_templates = {
     "application/json" = "{\"statusCode\": 200}"
+  }
+}
+
+resource "aws_api_gateway_integration_response" "integration_verify_response" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id = aws_api_gateway_resource.verify_resource.id
+  http_method = aws_api_gateway_method.verify_method_option.http_method
+  status_code = aws_api_gateway_method_response.verify_method_response_option.status_code
+  response_parameters = {
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST'",
+    "method.response.header.Access-Control-Allow-Origin"  = "'*'"
   }
 }
 
