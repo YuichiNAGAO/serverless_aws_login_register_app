@@ -17,7 +17,7 @@ resource "aws_api_gateway_method" "health_method" {
   resource_id      = aws_api_gateway_resource.health_resource.id
   http_method      = "GET"
   authorization    = "NONE"
-  api_key_required = true
+  api_key_required = false
 }
 
 resource "aws_api_gateway_method" "health_method_option" {
@@ -103,7 +103,7 @@ resource "aws_api_gateway_method" "login_method" {
   resource_id      = aws_api_gateway_resource.login_resource.id
   http_method      = "POST"
   authorization    = "NONE"
-  api_key_required = true
+  api_key_required = false
 }
 
 resource "aws_api_gateway_method" "login_method_option" {
@@ -193,7 +193,7 @@ resource "aws_api_gateway_method" "register_method" {
   resource_id      = aws_api_gateway_resource.register_resource.id
   http_method      = "POST"
   authorization    = "NONE"
-  api_key_required = true
+  api_key_required = false
 }
 
 resource "aws_api_gateway_method" "register_method_option" {
@@ -280,7 +280,7 @@ resource "aws_api_gateway_method" "verify_method" {
   resource_id      = aws_api_gateway_resource.verify_resource.id
   http_method      = "POST"
   authorization    = "NONE"
-  api_key_required = true
+  api_key_required = false
 }
 
 resource "aws_api_gateway_method" "verify_method_option" {
@@ -375,10 +375,10 @@ resource "aws_api_gateway_deployment" "mydeployment" {
 }
 
 
-resource "aws_api_gateway_api_key" "backend_apikey" {
-  name    = "backend-apikey"
-  enabled = true
-}
+# resource "aws_api_gateway_api_key" "backend_apikey" {
+#   name    = "backend-apikey"
+#   enabled = true
+# }
 
 
 resource "aws_api_gateway_usage_plan" "myplan" {
@@ -402,11 +402,11 @@ resource "aws_api_gateway_usage_plan" "myplan" {
   }
 }
 
-resource "aws_api_gateway_usage_plan_key" "myplan_key" {
-  key_id        = aws_api_gateway_api_key.backend_apikey.id
-  key_type      = "API_KEY"
-  usage_plan_id = aws_api_gateway_usage_plan.myplan.id
-}
+# resource "aws_api_gateway_usage_plan_key" "myplan_key" {
+#   key_id        = aws_api_gateway_api_key.backend_apikey.id
+#   key_type      = "API_KEY"
+#   usage_plan_id = aws_api_gateway_usage_plan.myplan.id
+# }
 
 
 

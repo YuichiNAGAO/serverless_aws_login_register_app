@@ -46,6 +46,7 @@ const Register = ()=> {
             password: password
           }
 
+        console.log(requestConfig);
         console.log(requestBody);
         console.log(registerUrl);
 
