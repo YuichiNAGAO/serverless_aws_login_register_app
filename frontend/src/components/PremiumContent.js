@@ -1,14 +1,41 @@
 import React from "react";
-import { Grid } from '@material-ui/core'
+import {getUser, resetUserSession} from '../services/AuthService';
+import { Grid, Paper, Avatar } from '@material-ui/core'
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container";
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import axios from 'axios';
 
 
-const PremiumContent = ()=> {
+const PremiumContent = (props)=> {
+    const paperStyle={padding: 20, height: '70vh', width:280, margin:"20px auto", alignItems: "center",textAlign: "center", justifyContent: "center"}
+    const avatarStyle={backgroundColor: "green"}
+    const buttonStyle={margin:"60px 0"}
+    const user =getUser();
+    const name = user !=='undefined' && user ? user.name : '';
+
+    const logoutHandler = () => {
+        resetUserSession();
+        props.history.push('login');
+    }
     return (
-        <Grid container>
-            <Grid sm={2}/>
-            <Grid lg={8} sm={8} spacing={10}>
-            This is PremiumContent page!
-            </Grid>
+        <Grid>
+            <Paper evaluation={10} style={paperStyle}>
+                <Grid align="center">
+                    <Avatar style={avatarStyle}>
+                        <AppRegistrationIcon />
+                    </Avatar>
+
+                    <h2> Premium Content</h2>
+                </Grid>
+                    Hello {name}! 
+                    <Button type="submit" color='primary' variant="contained" style={buttonStyle} fullWidth onClick={logoutHandler}>
+                    {/* <Button type="submit" color='primary' variant="contained" style={buttonStyle} fullWidth> */}
+                        Logout
+                    </Button>
+            </Paper>
+
         </Grid>
     )
 }

@@ -6,7 +6,7 @@ import Container from "@material-ui/core/Container";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import axios from 'axios';
 
-const registerUrl= process.env.REACT_APP_REGISTERURL;
+const registerUrl= process.env.REACT_APP_ENDPOINT+'/register';
 
 const Register = ()=> {
     const [name, setName]= useState('')
@@ -23,22 +23,11 @@ const Register = ()=> {
         console.log(name);
         console.log('submit button is pressed!');
 
-        const requestConfig ={
-            header: {
-                'x-api-key': process.env.REACT_APP_APIKEY
-            }
-        }
-
-        // axios.get(registerUrl, requestConfig).then(response => {
-        //     setMessage('Registation Succcessful');
-        // }).catch(error => {
-        //     if (error.response.status==401 || error.response.status==403){
-        //         setMessage(error.response.data.message);
-        //     } else {
-        //         setMessage('sorry... backend server is down');
+        // const requestConfig ={
+        //     header: {
+        //         'x-api-key': process.env.REACT_APP_APIKEY
         //     }
-        // })
-    
+        // }
         const requestBody = {
             username: username,
             email: email,
@@ -46,11 +35,11 @@ const Register = ()=> {
             password: password
           }
 
-        console.log(requestConfig);
+        // console.log(requestConfig);
         console.log(requestBody);
         console.log(registerUrl);
 
-        axios.post(registerUrl, requestBody, requestConfig).then(response => {
+        axios.post(registerUrl, requestBody).then(response => {
         setMessage('Registeration Successful');
         }).catch(error => {
         if (error.response.status === 401 || error.response.status === 403) {
@@ -61,10 +50,6 @@ const Register = ()=> {
         })
     
     }
-
-    
-
-    
 
     return (
         <Grid>

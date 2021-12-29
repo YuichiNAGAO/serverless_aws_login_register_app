@@ -16,7 +16,7 @@ export default function ButtonAppBar() {
             My serverless sample app
           </Typography>
           <Button color="inherit" component={Link} to="/premium-content">Premium Page</Button>
-          <Button color="inherit" component={Link} to="/resgister">Register</Button>
+          <Button color="inherit" component={Link} to="/register">Register</Button>
           <Button color="inherit" component={Link} to="/login">Login</Button>
         </Toolbar>
       </AppBar>
