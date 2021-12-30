@@ -5,6 +5,12 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import PremiumContent from "./components/PremiumContent";
 import Header from './components/Header'
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
+import { getToken,getUser,setUserSession,resetUserSession } from './services/AuthService';
+
+
+const verifyUrl=REACT_APP_ENDPOINT+'verify';
 
 
 function App() {
@@ -21,9 +27,9 @@ function App() {
         </Routes> */}
         <Switch>
           <Route exact path="/" component={Home}/>
-          <Route path="/register" component={Register}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/premium-content" component={PremiumContent}/>
+          <PublicRoute path="/register" component={Register}/>
+          <PublicRoute path="/login" component={Login}/>
+          <PrivateRoute path="/premium-content" component={PremiumContent}/>
         </Switch>
       </div>
       </BrowserRouter>

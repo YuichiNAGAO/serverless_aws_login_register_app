@@ -29,7 +29,8 @@ const PremiumContent = (props)=> {
 
                     <h2> Premium Content</h2>
                 </Grid>
-                    Hello {name}! 
+                    Hello {name}!<br />
+                    Welcome to the premium content!
                     <Button type="submit" color='primary' variant="contained" style={buttonStyle} fullWidth onClick={logoutHandler}>
                     {/* <Button type="submit" color='primary' variant="contained" style={buttonStyle} fullWidth> */}
                         Logout
