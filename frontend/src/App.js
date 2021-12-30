@@ -8,12 +8,40 @@ import Header from './components/Header'
 import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import { getToken,getUser,setUserSession,resetUserSession } from './services/AuthService';
+import axios from 'axios';
+import React, {useState, useEffect} from "react";
 
 
-const verifyUrl=REACT_APP_ENDPOINT+'verify';
+const verifyUrl=process.env.REACT_APP_ENDPOINT+'/verify';
 
 
 function App() {
+  const [isAuthenicating, setAuthenicating] = useState(true);
+
+  useEffect(() => {
+    const token = getToken();
+    if (token === 'undefined' || token === undefined || token === null || !token) {
+      return;
+    }
+    const requestBody = {
+      user: getUser(),
+      token: token
+    }
+
+    axios.post(verifyUrl, requestBody).then(response => {
+      setUserSession(response.data.user, response.data.token);
+      setAuthenicating(false);
+    }).catch(() => {
+      resetUserSession();
+      setAuthenicating(false);
+    })
+  }, []);
+
+  const token = getToken();
+  if (isAuthenicating && token) {
+    return <div className="content">Authenicating...</div>
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
