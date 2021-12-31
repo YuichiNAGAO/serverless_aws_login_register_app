@@ -21,10 +21,10 @@ resource "aws_api_gateway_method" "health_method" {
 }
 
 resource "aws_api_gateway_method" "health_method_option" {
-  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  resource_id      = aws_api_gateway_resource.health_resource.id
-  http_method      = "OPTIONS"
-  authorization    = "NONE"
+  rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id   = aws_api_gateway_resource.health_resource.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
 }
 
 resource "aws_api_gateway_method_response" "health_method_response" {
@@ -107,10 +107,10 @@ resource "aws_api_gateway_method" "login_method" {
 }
 
 resource "aws_api_gateway_method" "login_method_option" {
-  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  resource_id      = aws_api_gateway_resource.login_resource.id
-  http_method      = "OPTIONS"
-  authorization    = "NONE"
+  rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id   = aws_api_gateway_resource.login_resource.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
 }
 
 
@@ -197,10 +197,10 @@ resource "aws_api_gateway_method" "register_method" {
 }
 
 resource "aws_api_gateway_method" "register_method_option" {
-  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  resource_id      = aws_api_gateway_resource.register_resource.id
-  http_method      = "OPTIONS"
-  authorization    = "NONE"
+  rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id   = aws_api_gateway_resource.register_resource.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
 }
 
 resource "aws_api_gateway_method_response" "register_method_response" {
@@ -284,10 +284,10 @@ resource "aws_api_gateway_method" "verify_method" {
 }
 
 resource "aws_api_gateway_method" "verify_method_option" {
-  rest_api_id      = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  resource_id      = aws_api_gateway_resource.verify_resource.id
-  http_method      = "OPTIONS"
-  authorization    = "NONE"
+  rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  resource_id   = aws_api_gateway_resource.verify_resource.id
+  http_method   = "OPTIONS"
+  authorization = "NONE"
 }
 
 
@@ -355,8 +355,8 @@ resource "aws_api_gateway_integration_response" "integration_verify_response" {
 
 
 resource "aws_api_gateway_deployment" "mydeployment" {
-  rest_api_id       = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  stage_name        = "prod"
+  rest_api_id = aws_api_gateway_rest_api.api_gateway_rest_api.id
+  stage_name  = "prod"
 
   depends_on = [
     aws_api_gateway_integration.integration_health,
@@ -425,12 +425,12 @@ resource "aws_api_gateway_method_settings" "api_gateway_method_settings" {
     logging_level      = "INFO"
   }
 
-  depends_on= [aws_api_gateway_account.demo]
+  depends_on = [aws_api_gateway_account.demo]
 }
 
 resource "aws_api_gateway_gateway_response" "gateway_response_4XX" {
   rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  response_type="DEFAULT_4XX"
+  response_type = "DEFAULT_4XX"
 
   response_templates = {
     "application/json" = "{\"message\":$context.error.messageString}"
@@ -439,15 +439,15 @@ resource "aws_api_gateway_gateway_response" "gateway_response_4XX" {
   response_parameters = {
     "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type'"
     "gatewayresponse.header.Access-Control-Allow-Methods" = "'OPTIONS,POST,GET'"
-    "gatewayresponse.header.Access-Control-Allow-Origin" = "'*'"
+    "gatewayresponse.header.Access-Control-Allow-Origin"  = "'*'"
   }
-  
+
 }
 
 
 resource "aws_api_gateway_gateway_response" "gateway_response_5XX" {
   rest_api_id   = aws_api_gateway_rest_api.api_gateway_rest_api.id
-  response_type="DEFAULT_5XX"
+  response_type = "DEFAULT_5XX"
 
   response_templates = {
     "application/json" = "{\"message\":$context.error.messageString}"
@@ -456,7 +456,7 @@ resource "aws_api_gateway_gateway_response" "gateway_response_5XX" {
   response_parameters = {
     "gatewayresponse.header.Access-Control-Allow-Headers" = "'Content-Type'"
     "gatewayresponse.header.Access-Control-Allow-Methods" = "'OPTIONS,POST,GET'"
-    "gatewayresponse.header.Access-Control-Allow-Origin" = "'*'"
+    "gatewayresponse.header.Access-Control-Allow-Origin"  = "'*'"
   }
-  
+
 }
