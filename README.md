@@ -4,7 +4,7 @@ AWS上にReact+Node.js+Terraformでデプロイするログイン/登録機能�
 
 ### アーキテクチャ
 
-![アーキテクチャ図](https://github.com/YuichiNAGAO/serverless_aws_login_register_app/blob/images/dog_akitainu.png)
+![アーキテクチャ図](https://github.com/YuichiNAGAO/serverless_aws_login_register_app/blob/images/architecture.png)
 
 ### 使い方
 ```
