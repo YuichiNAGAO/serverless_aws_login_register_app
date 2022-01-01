@@ -2,7 +2,7 @@
 
 AWS上にReact+Node.js+Terraformでデプロイするログイン/登録機能を持ったサンプルアプリケーション
 
-### アーキテクチャ
+## アーキテクチャ
 
 ![アーキテクチャ図](https://github.com/YuichiNAGAO/serverless_aws_login_register_app/blob/images/app_architecture.png)
 
@@ -12,13 +12,13 @@ AWS上にReact+Node.js+Terraformでデプロイするログイン/登録機能�
 - インフラ構築：Terraformを用いる。
 
 
-### デプロイまでの手順
-
+## デプロイまでの手順
+---
 #### ローカル環境からデプロイする場合
-
+---
 1. tfstateを格納するためのS3バケットをコンソールから作成する
 
-2. 1で作成したバケット名をjsonファイルに記入
+2. 1で作成したバケット名を[ここ](https://github.com/YuichiNAGAO/serverless_aws_login_register_app/blob/main/terraform/main.tf#L14)に記入
 
 3. ローカル環境にAWSのシークレットを用意
 ```
@@ -41,11 +41,14 @@ npm run build
 `frontend/`配下に作成された`build/`フォルダをS3にアップロード
 
 
-#### Github Actionsを使ってデプロイする場合
 
+---
+#### Github Actionsを使ってデプロイする場合
+---
 1. tfstateを格納するためのS3バケットをコンソールから作成する
 
-2. 1で作成したバケット名をこのjsonファイルに記入 
+2. 1で作成したバケット名を[ここ](https://github.com/YuichiNAGAO/serverless_aws_login_register_app/blob/main/terraform/main.tf#L14)に記入
+
 
 3. Github環境にAWSのシークレットを用意
 ```
@@ -67,7 +70,6 @@ npm run build
 `frontend/`配下に作成された`build/`フォルダをS3にアップロード
 
 
-### アプリケーションのフロント部分
+## アプリケーションのフロント部分
 
 ![フロントエンド](https://github.com/YuichiNAGAO/serverless_aws_login_register_app/blob/images/sample_frontend.png)
-
