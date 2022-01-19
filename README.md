@@ -97,6 +97,15 @@ npm run build
 + リクエスト
   + メソッド: POST
   + URI: /register
+  + ボディ
+      ```js
+      {
+        "name": "sample",
+        "email": "sample@email.com",
+        "username": "sample",
+        "password": "sample"
+      }
+      ```
 + レスポンス
 (4) ユーザー確認
 + リクエスト
