@@ -81,12 +81,6 @@ npm run build
 + リクエスト
   + メソッド: GET
   + URI: /health
-  + ボディ
-      ```js
-      {
-        "avater_id": 2
-      }
-      ```
 + レスポンス
 
 
@@ -94,6 +88,13 @@ npm run build
 + リクエスト
   + メソッド: POST
   + URI: /login
+  + ボディ
+      ```js
+      {
+        "username": "sample",
+        "password": "sample"
+      }
+      ```
 + レスポンス
 
 
@@ -115,4 +116,13 @@ npm run build
 + リクエスト
   + メソッド: POST
   + URI: /verify
+  + ボデイ
+      ```js
+      {
+          "user": {
+              "username": "sample"
+          },
+          "token": "xxxxx"
+      }
+      ```
 + レスポンス
