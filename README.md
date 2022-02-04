@@ -91,11 +91,22 @@ npm run build
   + ボディ
       ```js
       {
+        user: {
+            username: "sample",
+            name: "sample"
+          },
+        token: "xxxxxx"
+      }
+      ```
++ レスポンス
+  + ボディ
+      ```js
+      {
         "username": "sample",
         "password": "sample"
       }
       ```
-+ レスポンス
+
 
 
 (3) 登録
@@ -112,6 +123,12 @@ npm run build
       }
       ```
 + レスポンス
+  + ボディ
+      ```js
+      {
+        username: "sample"
+      }
+      ```
 (4) ユーザー確認
 + リクエスト
   + メソッド: POST
@@ -126,3 +143,12 @@ npm run build
       }
       ```
 + レスポンス
+  + ボディ
+      ```js
+      {
+        verified: True or False,
+        message: 'success',
+        user: "sample",
+        token: "xxxxxx"
+      }
+      ```
